@@ -1,4 +1,4 @@
-name: Android Build
+name: Team11 Build
 on: [push]
 jobs:
   build:
@@ -13,19 +13,19 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      # এই স্টেপটা অটোমেটিক তোর লাইব্রেরি ডাউনলোডের লিঙ্ক ঠিক করে দেবে
-      - name: Fix Missing Repositories
+      # এই স্টেপটা জোর করে তোর সব ফাইলে ডাউনলোডের লিঙ্ক ঢুকিয়ে দেবে
+      - name: Force Inject Repositories
         run: |
-          echo "allprojects { repositories { google(); mavenCentral(); jcenter(); maven { url 'https://jitpack.io' } } }" > init.gradle
+          find . -name "*.gradle" -type f -exec sed -i 's|repositories *{|repositories { \n        jcenter() \n        maven { url "https://jitpack.io" }|g' {} +
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build APK
-        run: ./gradlew assembleDebug --init-script init.gradle --no-daemon
+      - name: Build Team11 APK
+        run: ./gradlew assembleDebug --no-daemon
 
-      - name: Upload APK
+      - name: Upload Team11 APK
         uses: actions/upload-artifact@v4
         with:
-          name: safeslotwin-apk
+          name: Team11-App
           path: app/build/outputs/apk/debug/app-debug.apk
