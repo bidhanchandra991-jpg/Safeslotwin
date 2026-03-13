@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            layout="@layout/activity_mainheader"
+            android:id="@+id/head"/>
+
+        <ScrollView
+            android:id="@+id/scroll_form"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/head"
+            android:clipToPadding="false"
+            android:visibility="visible">
+            
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp">
+                
+                <EditText
+                    android:id="@+id/tv_CheckName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Name"
+                    android:singleLine="true"
+                    android:textColorHint="#626262"
+                    android:textColor="#1e1e1e"
+                    android:textSize="15sp"
+                    android:background="@drawable/edittext_back"
+                    android:padding="12dp"
+                    android:layout_marginTop="10dp"/>
+
+                <EditText
+                    android:id="@+id/tv_CheckEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:layout_below="@+id/tv_CheckName"
+                    android:singleLine="true"
+                    android:textColorHint="#626262"
+                    android:textColor="#1e1e1e"
+                    android:textSize="15sp"
+                    android:background="@drawable/edittext_back"
+                    android:padding="12dp"
+                    android:layout_marginTop="10dp"/>
+
+                <EditText
+                    android:id="@+id/tv_CheckNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Number"
+                    android:layout_below="@+id/tv_CheckEmail"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:textColorHint="#626262"
+                    android:textColor="#1e1e1e"
+                    android:textSize="15sp"
+                    android:background="@drawable/edittext_back"
+                    android:padding="12dp"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/tv_totalamountHead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_CheckNumber"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    android:text="Total Amount" />
+
+                <TextView
+                    android:id="@+id/tv_totalamount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_totalamountHead"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#1e1e1e"
+                    android:textSize="24sp"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/tv_Checkout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_totalamount"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/dark_rectangle"
+                    android:backgroundTint="#25ba38"
+                    android:text="Checkout"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:padding="10dp" />
+
+                <TextView
+                    android:id="@+id/tv_Logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_Checkout"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/dark_rectangle"
+                    android:backgroundTint="#25ba38"
+                    android:text="Logout"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:padding="10dp" />
+            </RelativeLayout>
+        </ScrollView>
+
+        <WebView
+            android:id="@+id/payment_webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/head"
+            android:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+</layout>
