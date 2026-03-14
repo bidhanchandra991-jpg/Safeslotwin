@@ -54,5 +54,25 @@ jobs:
         with:
           name: Team11-App
           path: app/build/outputs/apk/debug/app-debug.apk
+              <dimen name="four">4dp</dimen>
+              <dimen name="twelveScaled">12dp</dimen>
+              <string name="MR_Error_text">Error</string>
+              <string name="MR_Tap_retry_text">Retry</string>
+          </resources>
+          EOF
+          
+          echo '<?xml version="1.0" encoding="utf-8"?><shape xmlns:android="http://schemas.android.com/apk/res/android"><solid android:color="#00000000"/></shape>' > app/src/main/res/drawable/close.xml
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build Team11 APK
+        run: ./gradlew assembleDebug --no-daemon
+
+      - name: Upload Team11 APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Team11-App
+          path: app/build/outputs/apk/debug/app-debug.apk
           name: Team11-App
           path: app/build/outputs/apk/debug/app-debug.apk
