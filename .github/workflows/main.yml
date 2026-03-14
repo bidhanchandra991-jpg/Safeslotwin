@@ -13,10 +13,17 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      # এই স্টেপটা জোর করে তোর সব ফাইলে ডাউনলোডের লিঙ্ক ঢুকিয়ে দেবে
-      - name: Force Inject Repositories
+      # এই ম্যাজিক স্টেপটা তোর হারানো সব রং, সাইজ আর ছবি অটোমেটিক বানিয়ে দেবে
+      - name: Create Missing Design Files
         run: |
-          find . -name "*.gradle" -type f -exec sed -i 's|repositories *{|repositories { \n        jcenter() \n        maven { url "https://jitpack.io" }|g' {} +
+          mkdir -p app/src/main/res/values
+          mkdir -p app/src/main/res/drawable
+          echo '<?xml version="1.0" encoding="utf-8"?><resources><dimen name="dimen_1dp">1dp</dimen><dimen name="dimen_5dp">5dp</dimen><dimen name="dimen_30dp">30dp</dimen><dimen name="four">4dp</dimen></resources>' > app/src/main/res/values/dimens.xml
+          sed -i 's/<\/resources>//g' app/src/main/res/values/colors.xml || true
+          echo '<color name="transparent">#00000000</color><color name="dark_gray">#444444</color><color name="gray">#888888</color><color name="red">#FF0000</color></resources>' >> app/src/main/res/values/colors.xml
+          echo '<?xml version="1.0" encoding="utf-8"?><shape xmlns:android="http://schemas.android.com/apk/res/android"><solid android:color="#00000000"/></shape>' > app/src/main/res/drawable/close.xml
+          echo '<?xml version="1.0" encoding="utf-8"?><shape xmlns:android="http://schemas.android.com/apk/res/android"><solid android:color="#00000000"/></shape>' > app/src/main/res/drawable/ic_refresh_black_36dp.xml
+          echo '<?xml version="1.0" encoding="utf-8"?><shape xmlns:android="http://schemas.android.com/apk/res/android"><solid android:color="#00000000"/></shape>' > app/src/main/res/drawable/ripple_drawable.xml
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
